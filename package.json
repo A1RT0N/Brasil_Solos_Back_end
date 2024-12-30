@@ -1,0 +1,16 @@
+{
+  "name": "brasil_solos_back_end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webscrap.js",
+  "scripts": {
+    "start": "node webscrap.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
