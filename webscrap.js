@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 
 const app = express();
 app.use(cors()); // Permite CORS para todas as origens
@@ -10,12 +10,8 @@ app.get('/scrape', async (req, res) => {
   let browser;
   
   try {
-    // Inicializa o Puppeteer com puppeteer-core
-    browser = await puppeteer.launch({
-      executablePath: '/usr/bin/google-chrome', // Caminho padrão do Chrome no Render
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] // Importante em ambientes Linux
-    });
+    // Inicializa o Puppeteer em modo headless e desativa o sandbox (importante em ambientes Linux)
+    browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
 
     // Vai para a URL especificada e espera o seletor desejado
@@ -71,8 +67,6 @@ app.get('/scrape', async (req, res) => {
   }
 });
 
-// Define a porta para o Render
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
 });
