@@ -8,10 +8,15 @@ app.use(cors()); // Permite CORS para todas as origens
 app.get('/scrape', async (req, res) => {
   const input = req.query.input;
   let browser;
-  
+
   try {
-    // Inicializa o Puppeteer em modo headless e desativa o sandbox (importante em ambientes Linux)
-    browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    // Inicializa o Puppeteer em modo headless e define o caminho correto para o Chrome
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: '/opt/render/.cache/puppeteer/chrome/linux-121.0.6167.85/chrome'
+    });
+
     const page = await browser.newPage();
 
     // Vai para a URL especificada e espera o seletor desejado

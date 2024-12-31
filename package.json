@@ -4,7 +4,8 @@
   "description": "",
   "main": "webscrap.js",
   "scripts": {
-    "start": "node webscrap.js"
+    "start": "node webscrap.js",
+    "postinstall": "npx puppeteer install"
   },
   "dependencies": {
     "express": "^4.18.2",
