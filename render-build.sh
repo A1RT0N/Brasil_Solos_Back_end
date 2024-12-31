@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Instala dependências necessárias para o Chrome
 apt-get update && apt-get install -y \
     wget \
     gconf-service \
