@@ -5,6 +5,7 @@
   "main": "webscrap.js",
   "scripts": {
     "start": "node webscrap.js",
+    "build": "bash render-build.sh && npm install",
     "postinstall": "npx puppeteer install"
   },
   "dependencies": {
