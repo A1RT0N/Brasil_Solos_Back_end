@@ -12,12 +12,19 @@ app.get('/scrape', async (req, res) => {
   try {
     // Inicializa o Puppeteer em modo headless e define o caminho correto para o Chrome
     const browser = await puppeteer.launch({
-      headless: "new", // Opta pelo novo modo headless do Puppeteer
+      headless: "new", // Usa o novo modo Headless
       args: [
         '--no-sandbox',
-        '--disable-setuid-sandbox'
-      ]
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage', // Reduz problemas com memória compartilhada
+        '--disable-gpu',           // Desativa GPU (não necessária em headless)
+        '--single-process',        // Força o Chrome a rodar como um único processo
+        '--no-zygote',             // Reduz processos adicionais
+      ],
+      executablePath: '/opt/render/.cache/puppeteer/chrome/linux-121.0.6167.85/chrome-linux64/chrome'
     });
+
+    console.log("Foi")
 
     const page = await browser.newPage();
 
